@@ -1,0 +1,226 @@
+[
+  {
+    "objectID": "index.html#dmitry-mittov",
+    "href": "index.html#dmitry-mittov",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Dmitry Mittov",
+    "text": "Dmitry Mittov\n\nGitHub: @dmittov\nTwitter: @mittov\nInstagram: @mittov\nCompany: Revolut"
+  },
+  {
+    "objectID": "index.html#plan",
+    "href": "index.html#plan",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Plan",
+    "text": "Plan\n\nNeural Networks: Recap\nBayesian Machine Learning: Recap\nBayesian neural networks\nVariational Dropout\nConclusions"
+  },
+  {
+    "objectID": "index.html#neural-network-wrong",
+    "href": "index.html#neural-network-wrong",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Neural Network (wrong)",
+    "text": "Neural Network (wrong)"
+  },
+  {
+    "objectID": "index.html#neural-network-mlp",
+    "href": "index.html#neural-network-mlp",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Neural Network: MLP",
+    "text": "Neural Network: MLP"
+  },
+  {
+    "objectID": "index.html#usual-ml-task",
+    "href": "index.html#usual-ml-task",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Usual ML Task",
+    "text": "Usual ML Task\nWe want to find the right \\(\\theta\\):\n\\(y \\approx f(X, \\theta)\\)\n\n\n\\(X\\), \\(y\\) - data\n\\(y\\) - targets: Data Scientists Salary\n\\(X\\) - features: Python/Math skills, years of experience, etc\n\\(f\\) - model, i.e. neural network\n\\(\\theta\\) - model parameters. weights of the network"
+  },
+  {
+    "objectID": "index.html#machine-learning-challenges",
+    "href": "index.html#machine-learning-challenges",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Machine learning challenges",
+    "text": "Machine learning challenges\n\\(y \\approx f(X, \\theta)\\)\n\nHow to measure similarity?\nHow to find weights?"
+  },
+  {
+    "objectID": "index.html#frequentist-approach",
+    "href": "index.html#frequentist-approach",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Frequentist approach",
+    "text": "Frequentist approach\n\nSimilarity comes from the model of the error\n\n\\[\n\\forall{k} \\quad y_k - f(X_k, \\theta) \\sim N(0, \\sigma^2)\n\\]\n\nFinding weights is method dependent\n\nStochastic gradient descent for Neural Networks\nCan be found directly for Linear Regression"
+  },
+  {
+    "objectID": "index.html#maximum-likelihood",
+    "href": "index.html#maximum-likelihood",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Maximum Likelihood",
+    "text": "Maximum Likelihood\n\\[\ny_k - f(x_k, \\theta) \\sim N(0, \\sigma^2)\n\\]\n\n\\[\np(y_k, x_k | \\theta) = \\frac{1}{\\sqrt{2 \\pi \\sigma^2 }} e^{- \\frac{1}{2} (\\frac{y_k - f(x_k, \\theta)}{\\sigma})^2}\n\\]\n\n\n\\[\n\\log p(y, X| \\theta) \\rightarrow \\max\n\\]\n\n\n\\[\n\\sum_k (y_k - f(x_k, \\theta))^2 \\rightarrow \\min\n\\]"
+  },
+  {
+    "objectID": "index.html#bayesian-approach",
+    "href": "index.html#bayesian-approach",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Bayesian approach",
+    "text": "Bayesian approach\n\\[\np(\\theta | X, y) = \\frac{p (y | X, \\theta) \\cdot p(\\theta)}{p(X, y)}\n\\]\n\\(p (y | X, \\theta)\\) - Likelihood from the frequentist approach\n\\(p(\\theta)\\) - prior distribution on model parameters\n\\(p(X, y)\\) - data probability, we don’t know it\n\nMAP: \\(p(\\theta | X, y) \\rightarrow \\max\\)\nFair bayesian: \\(\\hat{y} = \\mathbb{E}_{\\theta} f(X, \\theta)\\)"
+  },
+  {
+    "objectID": "index.html#map",
+    "href": "index.html#map",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "MAP",
+    "text": "MAP\n\\[\np(\\theta | X, y) \\rightarrow \\max\n\\]\n\n\\[\n\\hookrightarrow \\log p(\\theta | X, y) \\rightarrow \\max\n\\]\n\n\n\\[\np(\\theta | X, y) = \\frac{p (y | X, \\theta) \\cdot p(\\theta)}{p(X, y)}\n\\]\n\n\n\\[\n\\log p(\\theta | X, y) = \\log p(y | X, \\theta) + \\log p(\\theta) - C_1 \\rightarrow \\max\n\\]\n\n\nwhen we assume \\(p(\\theta) \\sim N(0, \\lambda)\\):\n\\[\n\\sum(y_k - f(\\theta, X_k))^2 + \\lambda \\sum \\theta_j^2 \\rightarrow \\min\n\\]"
+  },
+  {
+    "objectID": "index.html#interim-conclusions",
+    "href": "index.html#interim-conclusions",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Interim conclusions",
+    "text": "Interim conclusions\n\nBayesian framework generalizes the frequentist’s approach\nWhen we simplify bayesian procedures, we get efficient techniques like regularization or ensembling"
+  },
+  {
+    "objectID": "index.html#dropout-picture",
+    "href": "index.html#dropout-picture",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Dropout (picture)",
+    "text": "Dropout (picture)\n\n\n2012 Improving neural networks by preventing co-adaptation of feature detectors G. E. Hinton∗ , N. Srivastava, A. Krizhevsky, I. Sutskever and R. R. Salakhutdinov\n2014 Dropout: A Simple Way to Prevent Neural Networks from Overfitting Nitish Srivastava, Geoffrey Hinton, Alex Krizhevsky, Ilya Sutskever, Ruslan Salakhutdinov"
+  },
+  {
+    "objectID": "index.html#dropout-effect",
+    "href": "index.html#dropout-effect",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Dropout (effect)",
+    "text": "Dropout (effect)\n\n\n2013 Regularization of Neural Networks using DropConnect Li Wan, Matthew Zeiler, Sixin Zhang, Yann Le Cun, Rob Fergus Proceedings of the 30th International Conference on Machine Learning, PMLR 28(3):1058-1066, 2013."
+  },
+  {
+    "objectID": "index.html#dropout",
+    "href": "index.html#dropout",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Dropout",
+    "text": "Dropout\nData: \\((X, y) = {(x_k, y_k)}_{k=1}^{N}\\)\nNetwork: \\(p(y_k| x_k, \\theta)\\), where \\(\\theta\\) - network parameters\nSGD: \\[\n\\theta_{t+1} = \\theta_t - \\gamma \\frac{\\partial \\log p(y_k | x_k, \\theta_t)}{\\partial \\theta_t};\n\\]\nSGD with Dropout: \\[\n\\theta_{t+1} = \\theta_t - \\gamma \\frac{\\partial \\log p(y_k | x_k, \\tilde{\\theta_t})}{\\partial \\theta_t};\n\\quad\n\\tilde{\\theta_t} = \\theta_t \\cdot \\epsilon\n\\]\n\\[\n\\epsilon \\sim Bernoulli(\\epsilon | p); \\quad \\textrm{p - hyper-parameter}\n\\]"
+  },
+  {
+    "objectID": "index.html#gaussian-dropout",
+    "href": "index.html#gaussian-dropout",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Gaussian Dropout",
+    "text": "Gaussian Dropout\nSGD with Dropout: \\[\n\\theta_{t+1} = \\theta_t - \\gamma \\frac{\\partial \\log p(y_k | x_k, \\tilde{\\theta_t})}{\\partial \\theta_t};\n\\]\nClassic: \\[\n\\tilde{\\theta_t} = \\theta_t \\cdot \\epsilon \\quad \\epsilon \\sim Bernoulli(\\epsilon | p)\n\\]\nGaussian: \\[\n\\tilde{\\theta_t} = \\theta_t \\cdot (1 + \\epsilon) \\quad \\epsilon \\sim N(\\epsilon | 0, \\sigma); \\quad \\sigma \\textrm{ - hyper-parameter}\n\\]\n\n2013 Fast dropout training Wang, S. and Manning, C. (2013). Fast dropout training. In Proceedings of the 30th International Conference on Machine Learning (ICML-13), pages 118–126."
+  },
+  {
+    "objectID": "index.html#dropout-optimization-target",
+    "href": "index.html#dropout-optimization-target",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Dropout: Optimization target",
+    "text": "Dropout: Optimization target\n\\[\n\\mathbb{E} \\frac{\\partial \\log p(y_k | x_k, \\tilde{\\theta})}{\\partial \\theta} = \\int r(\\epsilon) \\sum_{k=1}^{N} \\frac{\\partial \\log p(y_k | x_k, \\theta (1 + \\epsilon))}{\\partial \\theta} d\\epsilon\n\\]\n\\[\n= \\frac{\\partial}{\\partial \\theta} \\sum_k \\int r(\\epsilon) \\log p(y_k| x_k, \\theta (1 + \\epsilon)) = \\frac{\\partial}{\\partial \\theta} \\int r(\\epsilon) \\log p(Y | X, \\theta (1 + \\epsilon)) d\\epsilon\n\\]\n\n\\[\n\\tilde{\\theta} \\sim N(\\theta, \\sigma \\theta^2) \\sim N (\\mu, \\sigma \\mu^2)\n\\]\n\n\n\\[\n\\boxed{\n    \\frac{\\partial}{\\partial \\mu} \\int q(\\tilde{\\theta} | \\mu, \\sigma) \\log p (Y | X, \\tilde{\\theta}) d\\tilde{\\theta}\n    \\quad\n}\n\\]"
+  },
+  {
+    "objectID": "index.html#similarities-between-different-dropout-techniques",
+    "href": "index.html#similarities-between-different-dropout-techniques",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Similarities between different Dropout techniques",
+    "text": "Similarities between different Dropout techniques\n\n\nApplying noise to the network weights prevents overfitting\n\n\n\n\nIt’s not clear why this works\n\n\n\n\nThere are 2 sources of noise in the gradient:\n\nindex \\(\\sim U(k | 1, N)\\)\n\\(\\epsilon\\)\n\n\n\n\n\nHow to pick hyper-parameters?"
+  },
+  {
+    "objectID": "index.html#bayesian-neural-network",
+    "href": "index.html#bayesian-neural-network",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Bayesian Neural Network",
+    "text": "Bayesian Neural Network\nWe have a distribution over all possible weights.\n\\(y = \\mathbb{E}_{\\theta \\sim p}f(X, \\theta) = \\int_\\theta{f(X, \\theta) p(\\theta) d\\theta}\\)\n\nSimplifications:\n\nAll weights are independent: \\(p(\\theta| X, y) = \\prod p(\\theta_{ijl} | X, y)\\)\n\\(p(\\theta_{ijl}| X, y)\\) is some well known distribution  i.e. \\(p(\\theta_{ijl} | X, y) = p(\\theta_{ijl} | \\phi_{ijl}) = N(\\theta_{ijl} | \\mu_{ijl}, \\sigma_{ijl}^2)\\)\n\n\n\n\n\n\n\n%%{init: {\"theme\": \"dark\", \"themeVariables\": {\"fontSize\": \"12px\"}, \"flowchart\":{\"htmlLabels\":false}}}%%\nflowchart LR\n  Mu[\"Mu\"] --> Phi(\"Phi\")\n  Sigma --> Phi\n  Phi --> Theta(\"Theta\")"
+  },
+  {
+    "objectID": "index.html#bayesian-neural-network-example",
+    "href": "index.html#bayesian-neural-network-example",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Bayesian Neural Network: Example",
+    "text": "Bayesian Neural Network: Example\n\n\n\\(y = \\mathbb{E}_{\\theta \\sim p}f(X, \\theta) = \\int_\\theta{f(X, \\theta) p(\\theta) d\\theta}\\)\n\n\n\n\\(p = \\frac{1}{6} \\qquad \\theta = (1.2, 2.5, 2.8)\\)\n\\(p = \\frac{1}{6} \\qquad \\theta = (0.5, 1.7, 2.8)\\)\n\\(p = \\frac{1}{3} \\qquad \\theta = (-1.5, 1.5, 0.8)\\)\n\\(p = \\frac{1}{3} \\qquad \\theta = (0.5, 1.7, 2.8)\\)"
+  },
+  {
+    "objectID": "index.html#evidence-lower-bound",
+    "href": "index.html#evidence-lower-bound",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Evidence Lower Bound",
+    "text": "Evidence Lower Bound\nEvidence: \\(p(X, y) \\approx p_{\\theta}(X, y) = p(X, y | \\phi)\\)\n\n\n\n\\[\n\\log p(X, y| \\phi)\n\\]\n\n\n\\[\n= \\log \\int {p(X, y, z | \\phi) \\frac{q(z)}{q(z)}dz}\n\\]\n\n\n\\[\n= \\log \\mathbb{E}_{q(z)} \\frac{p(X, y, z | \\phi)}{q(z)}\n\\]\n\n\n\\[\n\\geq \\mathbb{E} \\log \\frac{p(X, y, z | \\phi )}{q(z)} - \\textrm{ELBO}\n\\]"
+  },
+  {
+    "objectID": "index.html#kullback-leibler-divergence",
+    "href": "index.html#kullback-leibler-divergence",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Kullback-Leibler divergence",
+    "text": "Kullback-Leibler divergence\n\\[\nKL(q(z) \\ || \\ p(z | X, y, \\phi)) := \\mathbb{E}_q \\log \\frac{q(z)}{p(z | X, y, \\phi)}\n\\]\n\n\\[\n= \\mathbb{E}_q \\log q(z) - \\mathbb{E}_q \\log \\frac{p(X, y, z | \\phi)}{p(X, y | \\phi)} = \\log p(X, y | \\phi) - \\mathbb{E}_q \\log \\frac{p(X, y, Z | \\phi)}{q(z)}\n\\]\n\n\n\n\n\\[\n\\textrm{Evidence} = \\textrm{ELBO} + \\textrm{KL(q || p)}\n\\]\n\\[\n\\textrm{Minimize KL divergence} \\sim \\textrm{Maximize ELBO}\n\\]"
+  },
+  {
+    "objectID": "index.html#original-variational-dropout",
+    "href": "index.html#original-variational-dropout",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Original Variational Dropout",
+    "text": "Original Variational Dropout\n\\[\n\\textrm {Prior:} \\quad p(\\log(|\\theta_{ijl}|)) = const \\Leftrightarrow p(|\\theta_{ijl}|) \\propto \\frac{1}{|\\theta_{ijl}|}\n\\]\n\\[\n\\textrm {Posterior:} \\quad p(\\theta | X, y) \\approx q(\\theta | \\phi) = \\prod_{ijl} N(\\theta_{ijl} | \\mu_{ijl}, \\sigma^2)\n\\]\n\\[\n\\hookrightarrow argmin_{\\phi} KL( q(\\theta | \\phi) || p(\\theta | X, y)) \\rightarrow argmax_{\\phi} ELBO\n\\]\nGaussian Dropout is a specific case of Variational Inference\n\n2015 Variational Dropout and the Local Reparameterization Trick Diederik P. Kingma, Tim Salimans and Max Welling\n2017 Variational Gaussian Dropout is not Bayesian Jiri Hron, Alexander G. de G. Matthews, Zoubin Ghahramani"
+  },
+  {
+    "objectID": "index.html#improved-variational-dropout",
+    "href": "index.html#improved-variational-dropout",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Improved Variational Dropout",
+    "text": "Improved Variational Dropout\n\\[\n\\textrm {Prior:} \\quad p(\\theta|\\lambda) = \\prod_{ijl} N(\\theta_{ijl} | 0, \\lambda_{ijl}^2)\n\\]\n\\[\n\\textrm {Posterior:} \\quad p(\\theta | X, y) \\approx q(\\theta | \\phi) = \\prod_{ijl} N(\\theta_{ijl} | \\mu_{ijl}, \\sigma_{ijl}^2)\n\\]\n\nTune \\(\\sigma\\) for each parameter automatically\nGet rid of improper distribution \\(\\rightarrow\\) normal prior distribution\n\n\n2017 Variational Dropout Sparsifies Deep Neural Networks Dmitry Molchanov, Arsenii Ashukha, Dmitry Vetrov :: Code"
+  },
+  {
+    "objectID": "index.html#variational-dropout-elbo",
+    "href": "index.html#variational-dropout-elbo",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Variational Dropout: ELBO",
+    "text": "Variational Dropout: ELBO\n\\[\nargmin_{\\phi = \\{\\mu, \\sigma\\}} KL(q(\\theta | \\phi) || p(\\theta| X, Y)) = argmax_{\\phi} ELBO\n\\]\n\\[\n= argmax_{\\phi} \\int q(\\theta | \\phi) \\log p(Y| X, \\theta) \\frac{p(\\theta)}{q(\\theta | \\phi)} d\\theta\n\\]\n\\[\n= argmax_{\\phi} \\boxed{\n    \\int q(\\theta | \\phi ) \\log p(Y | X, \\theta) d\\theta \\quad\n    \\\\\n    data term\n} - \\boxed{\n    KL(q(\\theta | \\phi) || p(\\theta)) \\quad\n    \\\\\n    regularization\n}\n\\]\n\\[\n    \\frac{\\partial}{\\partial \\mu} \\int q(\\theta | \\mu, \\sigma) \\log p (Y | X, \\theta) d\\theta\n    \\quad \\textrm{- Gaussian Dropout gradient}\n\\]"
+  },
+  {
+    "objectID": "index.html#regularization-term",
+    "href": "index.html#regularization-term",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Regularization term",
+    "text": "Regularization term\nOriginal Variational Dropout: \\[\nKL = func(\\mu, \\sigma) = func(\\mu)\n\\]\nARD: Maximize ELBO by \\(\\mu, \\sigma\\) and \\(\\lambda\\) \\[\nKL = \\sum_{ijl} \\left( \\log \\frac{\\sigma_{ijl}}{\\lambda_{ijl}} + \\frac{\\mu_{ijl}^2 + \\sigma_{ijl}^2}{2 \\lambda_{ijl}^2}\\right)\n\\]\n\\[\n\\lambda^{2 *}_{ijl} = \\mu_{ijl}^2 + \\sigma_{ijl}^2\n\\]\n\\[\nKL = -\\frac{1}{2} \\sum_{ijl} \\log \\frac{\\sigma^2_{ijl}}{\\sigma^2_{ijl} + \\mu_{ijl^2  }} + Const\n\\]"
+  },
+  {
+    "objectID": "index.html#training-code",
+    "href": "index.html#training-code",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Training code",
+    "text": "Training code\nmodel = Net(threshold=3)\noptimizer = torch.optim.Adam(model.parameters())\nkl_weight = 0.00\nepochs = 100\n\nfor epoch in tqdm(range(epochs)):\n    model.train()\n    kl_weight = min(kl_weight+0.02, 1)\n    for batch_idx, (data, target) in enumerate(train_loader):\n        data = data.view(-1, 28*28).float()\n        optimizer.zero_grad()\n        output = model(data)\n        pred = output.data.max(1)[1] \n        loss = elbo(output, target, kl_weight)\n        loss.backward()\n        optimizer.step()"
+  },
+  {
+    "objectID": "index.html#model-code",
+    "href": "index.html#model-code",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Model code",
+    "text": "Model code\nclass Net(nn.Module):\n    def __init__(self, threshold):\n        super(Net, self).__init__()\n        self.fc1 = LinearARD(28*28, 300, threshold)\n        self.fc2 = LinearARD(300,  100, threshold)\n        self.fc3 = LinearARD(100,  10, threshold)\n        self.threshold=threshold\n\n    def forward(self, x):\n        x = F.relu(self.fc1(x))\n        x = F.relu(self.fc2(x))\n        x = F.log_softmax(self.fc3(x), dim=1)\n        return x"
+  },
+  {
+    "objectID": "index.html#elbo-code",
+    "href": "index.html#elbo-code",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "ELBO code",
+    "text": "ELBO code\nclass ELBO(nn.Module):\n    def __init__(self, net, train_size):\n        super(ELBO, self).__init__()\n        self.train_size = train_size\n        self.net = net\n        self.loss = nn.NLLLoss()\n        \n    def forward(self, inputs, target, kl_weight=1.):\n        kl = 0.\n        for module in self.net.children():\n            if hasattr(module, 'kl_reg'):\n                kl += module.kl_reg()\n        sz = inputs.shape[0]\n        elbo_loss = self.train_size * self.loss(inputs, target) \\\n            + kl_weight * kl\n        return elbo_loss"
+  },
+  {
+    "objectID": "index.html#layer-code",
+    "href": "index.html#layer-code",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Layer code",
+    "text": "Layer code\n@property\ndef clip_mask(self):\n    return 1 * torch.le(self.log_alpha, self.threshold)\n\ndef forward(self, x):      \n    if self.training:\n        self.log_mu = torch.log(torch.abs(self.mu) + self.eps)\n        unstable_log_alpha = 2 * (self.log_sigma - self.log_mu)\n        self.log_alpha = torch.clamp(unstable_log_alpha, -10, 10)\n        \n        # LRT\n        lrt_mean = x @ self.mu.T\n        clipped_sigma2 = torch.exp(self.log_alpha) * (self.mu ** 2)\n        lrt_std2 = (x ** 2) @ clipped_sigma2.T\n        lrt_std = (lrt_std2 + self.eps) ** .5\n\n        epsilon = torch.normal(torch.zeros_like(lrt_mean), \n                                torch.ones_like(lrt_std))\n\n        activation = lrt_mean + epsilon * lrt_std\n        return activation + self.bias\n    \n    \n    out = F.linear(x, (self.clip_mask * self.mu), self.bias)\n    return out\n\ndef ard_reg(self):\n    inv_alpha = torch.exp(-self.log_alpha)\n    return 0.5 * torch.log1p(inv_alpha).sum()"
+  },
+  {
+    "objectID": "index.html#conclusions",
+    "href": "index.html#conclusions",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Conclusions",
+    "text": "Conclusions\n\nBayesian framework generalized Dropout\nWe can train not just weights, but also the variance of Gaussian Dropout (previously it was a hyper-parameter)\nWe can tune variance for individual weights/neurons/layers\nWe can sample ensembles from our bayesian neural network using just twice more weights"
+  },
+  {
+    "objectID": "index.html#follow-up-papers",
+    "href": "index.html#follow-up-papers",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Follow-up papers",
+    "text": "Follow-up papers\n\n2017 Bayesian Sparsification of Recurrent Neural Networks Ekaterina Lobacheva, Nadezhda Chirkova, Dmitry Vetrov\n2017 Structured Bayesian Pruning via Log-Normal Multiplicative Noise Kirill Neklyudov, Dmitry Molchanov, Arsenii Ashukha, Dmitry Vetrov"
+  },
+  {
+    "objectID": "index.html#links",
+    "href": "index.html#links",
+    "title": "Bayesian Neural Networks and Variational Dropout",
+    "section": "Links",
+    "text": "Links\n\n\n\nPaper\nMe"
+  }
+]
