@@ -386,9 +386,8 @@
   <script src="site_libs/quarto-diagram/mermaid.min.js"></script>
   <script src="site_libs/quarto-diagram/mermaid-init.js"></script>
   <link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-  </head><body class="quarto-dark">\usepackage{amsmath}
-
-
+</head>
+<body class="quarto-dark">
   <div class="reveal">
     <div class="slides">
 
@@ -776,7 +775,7 @@ argmin_{\phi = \{\mu, \sigma\}} KL(q(\theta | \phi) || p(\theta| X, Y)) = argmax
 <section id="regularization-term" class="slide level2">
 <h2>Regularization term</h2>
 <p>Original Variational Dropout: <span class="math display">\[
-KL = func(\mu, \sigma) = func(\mu)
+KL = func(\mu, \sigma) = func(\sigma)
 \]</span></p>
 <p>ARD: Maximize ELBO by <span class="math inline">\(\mu, \sigma\)</span> and <span class="math inline">\(\lambda\)</span> <span class="math display">\[
 KL = \sum_{ijl} \left( \log \frac{\sigma_{ijl}}{\lambda_{ijl}} + \frac{\mu_{ijl}^2 + \sigma_{ijl}^2}{2 \lambda_{ijl}^2}\right)

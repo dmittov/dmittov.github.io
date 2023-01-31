@@ -9,8 +9,6 @@ format:
     theme:
         - "dark"
     highlight-style: monokai
-header-includes:
-   - \usepackage{amsmath}
 ---
 
 ## Dmitry Mittov
@@ -483,7 +481,7 @@ $$
 
 Original Variational Dropout:
 $$
-KL = func(\mu, \sigma) = func(\mu)
+KL = func(\mu, \sigma) = func(\sigma)
 $$
 
 ARD: Maximize ELBO by $\mu, \sigma$ and $\lambda$

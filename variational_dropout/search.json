@@ -172,7 +172,7 @@
     "href": "index.html#regularization-term",
     "title": "Bayesian Neural Networks and Variational Dropout",
     "section": "Regularization term",
-    "text": "Regularization term\nOriginal Variational Dropout: \\[\nKL = func(\\mu, \\sigma) = func(\\mu)\n\\]\nARD: Maximize ELBO by \\(\\mu, \\sigma\\) and \\(\\lambda\\) \\[\nKL = \\sum_{ijl} \\left( \\log \\frac{\\sigma_{ijl}}{\\lambda_{ijl}} + \\frac{\\mu_{ijl}^2 + \\sigma_{ijl}^2}{2 \\lambda_{ijl}^2}\\right)\n\\]\n\\[\n\\lambda^{2 *}_{ijl} = \\mu_{ijl}^2 + \\sigma_{ijl}^2\n\\]\n\\[\nKL = -\\frac{1}{2} \\sum_{ijl} \\log \\frac{\\sigma^2_{ijl}}{\\sigma^2_{ijl} + \\mu_{ijl^2  }} + Const\n\\]"
+    "text": "Regularization term\nOriginal Variational Dropout: \\[\nKL = func(\\mu, \\sigma) = func(\\sigma)\n\\]\nARD: Maximize ELBO by \\(\\mu, \\sigma\\) and \\(\\lambda\\) \\[\nKL = \\sum_{ijl} \\left( \\log \\frac{\\sigma_{ijl}}{\\lambda_{ijl}} + \\frac{\\mu_{ijl}^2 + \\sigma_{ijl}^2}{2 \\lambda_{ijl}^2}\\right)\n\\]\n\\[\n\\lambda^{2 *}_{ijl} = \\mu_{ijl}^2 + \\sigma_{ijl}^2\n\\]\n\\[\nKL = -\\frac{1}{2} \\sum_{ijl} \\log \\frac{\\sigma^2_{ijl}}{\\sigma^2_{ijl} + \\mu_{ijl^2  }} + Const\n\\]"
   },
   {
     "objectID": "index.html#training-code",
