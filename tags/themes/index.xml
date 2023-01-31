@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>themes on Dmitry Mittov</title>
+    <link>https://dmittov.github.io/tags/themes/</link>
+    <description>Recent content in themes on Dmitry Mittov</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 31 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://dmittov.github.io/tags/themes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bayesians Neural Networks and Variational Dropout</title>
+      <link>https://dmittov.github.io/posts/variational-dropout/</link>
+      <pubDate>Tue, 31 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://dmittov.github.io/posts/variational-dropout/</guid>
+      <description>Info https://www.meetup.com/berlinbayesians/events/290620373/
+Slides</description>
+    </item>
+    
+  </channel>
+</rss>
