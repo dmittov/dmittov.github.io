@@ -1,0 +1,287 @@
+---
+title: "MLOps and it's levels of maturity"
+format:
+  revealjs:
+    slide-number: true
+    chalkboard:
+      buttons: false
+    preview-links: auto
+    theme:
+        - "dark"
+    highlight-style: monokai
+---
+
+## Dmitry Mittov
+
+<a href="https://github.com/dmittov">
+    <img 
+        src="https://img.shields.io/badge/dmittov-github-blue?logo=github"
+        height="50"
+    />
+</a>
+
+<a href="https://twitter.com/mittov">
+    <img 
+        src="https://img.shields.io/badge/mittov-twitter-blue?logo=twitter"
+        height="50"
+    />
+</a>
+
+<a href="https://www.instagram.com/mittov/">
+    <img 
+        src="https://img.shields.io/badge/mittov-instagram-blue?logo=instagram"
+        height="50"
+    />
+</a>
+
+<a href="https://revolut.com">
+    <img 
+        src="https://img.shields.io/badge/mittov-revolut-blue?logo=revolut"
+        height="50"
+    />
+</a>
+---
+
+### The mediator between ML models and Production Services must be the MLOps
+
+---
+
+## Metropolis GmbH
+
+![](img/metropolis-gmbh.png)
+
+---
+
+## CEO Jon Fredersen
+
+![](img/ceo-jon-fredersen.jpg)
+
+---
+
+## Waterfall Project Value
+
+![](img/waterfall-project.png)
+
+---
+
+## Agile Project Value
+
+![](img/agile-project.png)
+
+:::footer
+[Scrum: The Art of Doing Twice the Work in Half the Time](https://www.amazon.de/Scrum-Doing-Twice-Work-Half/dp/1847941109)
+:::
+
+---
+
+## Four Key Metrics
+
+```{mermaid}
+%%{init: {"theme": "dark", "themeVariables": {"fontSize": "12px"}, "flowchart":{"htmlLabels":false}}}%%
+stateDiagram-v2
+    state "Mean Time To Restore" as mttr
+    state "Lead Time To Change" as lttc
+    state "Deployment Frequency" as df
+    state "Change Failure Rate" as cfr
+    state "Productivity" as p
+    mttr --> p
+    lttc --> p
+    df --> p
+    cfr --> p
+```
+
+<span style="float: bottom">
+<a href="https://www.amazon.de/-/en/dp/B07BM3NBR6">
+    <img
+        src="https://m.media-amazon.com/images/I/51CjXuVck+L.jpg"
+        style="width:250px;height:250px;"
+    />
+</a>
+<a href="https://www.amazon.de/-/en/dp/B00VAZXH3Q">
+    <img 
+        src="https://m.media-amazon.com/images/I/51Fi5Fq4u5L.jpg"
+        style="width:250px;height:250px;"
+    />
+</a>
+<a href="https://www.amazon.de/-/en/dp/B0812C53VY">
+    <img 
+        src="https://m.media-amazon.com/images/I/51+3lvlXNuL.jpg"
+        style="width:250px;height:250px;"
+    />
+</a>
+<a href="https://www.amazon.de/-/en/Gene-Kim/dp/1950508404">
+    <img
+        src="https://m.media-amazon.com/images/I/51v2ZHygJUL._SX331_BO1,204,203,200_.jpg"
+        style="width:250px;height:250px;"
+    />
+</a>
+</span>
+
+:::footer
+[Accelerate](https://www.amazon.de/-/en/dp/B07BM3NBR6)
+:::
+
+---
+
+## MLOps
+
+![](img/maria-mlops.png)
+
+---
+
+## CTO Rotwang accepts the challenge
+
+![](img/cto-rotwang.jpg)
+
+---
+
+## ML Tools
+
+![](img/tools.png)
+
+::: footer
+[Linux Foundation AI & Data Foundation Interactive Landscape](https://landscape.lfai.foundation/)
+:::
+
+---
+
+## Creating a Company MLOps Platform
+
+![](img/work.png)
+
+
+---
+
+## Official Acceptance
+
+![](img/demo.png)
+
+---
+
+## Onboarding in Teams
+
+![](img/working-with-a-platform.png)
+
+---
+
+## ML in production
+
+![](https://cloud.google.com/static/architecture/images/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning-1-elements-of-ml.png)
+
+:::footer
+[Hidden Technical Debt in Machine Learning Systems](https://proceedings.neurips.cc/paper/2015/file/86df7dcfd896fcaf2674f757a2463eba-Paper.pdf) NeurIPS 2015
+:::
+
+---
+
+## The tower of Babel
+
+People spoke the same language, but could not understand each other ...
+
+![](img/babel.png)
+
+---
+
+## Possible Pitfalls
+
+* Prioritirisation
+* Onboarding Strategy
+* Platform team responsibility
+* Misunderstanding the needs of the ML teams
+* ...
+
+:::footer
+[Software Engineering at Google: Lessons Learned from Programming Over Time](
+    https://www.amazon.de/-/en/Titus-Winters/dp/1492082791
+)
+:::
+
+---
+
+## SWE Grot Protects Production Environment
+
+![](img/grot.png)
+
+---
+
+## MLOps Maturity Models
+
+* [Google model](https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning)
+* [Microsoft model](https://learn.microsoft.com/en-us/azure/architecture/example-scenario/mlops/mlops-maturity-model)
+
+Both describe a way
+
+From a manual processs to a fully automated pipeline
+
+In a few steps,
+
+Play a role of a checklist
+
+---
+
+## Microsoft MLOps levels
+
+| Level  | Name                            |
+|:------:|:--------------------------------|
+| 0      | No MLOps                        |
+| 1      | DevOps no MLOps                 |
+| 2      | Automated Training              |
+| 3      | Automated Model Deployment      |
+| 4      | Full MLOps Automated Retraining |
+
+---
+
+## Level 0: No MLOps
+
+* People
+* Model Creation
+* Model Release
+* Application Integration
+
+---
+
+## Level 1: DevOps no MLOps
+
+* Model Creation
+    * Data pipeline gathers data automatically
+* Application Integration
+    * Basic integration tests exist for the model
+    * Releases automated
+    * Application code has unit tests
+
+---
+
+## Level 2: Automated Training
+
+* Model Creation
+    * Compute is managed
+    * Experiment results are tracked
+    * Code and models are version controlled
+* Model Release
+    * Merging to the main branch instead of sending a file by e-mail
+
+---
+
+## Level 3: Automated Model Deployment
+
+* Model Release
+    * Automatic release by a CI/CD pipeline
+* Application Integration
+    * Unit and integration tests for each model release
+    * Less reliant on data scientist expertise to implement model
+
+---
+
+## Level 4: Full MLOps Automated Retraining
+
+* Model Creation
+    * Retraining triggered automatically based on production metrics
+* People
+    * SWE, DE and DS working together to automate model integration into application code. Implementing post-deployment metrics gathering
+
+---
+
+## Happy end
+
+![](img/mediator.png)
+

@@ -1,0 +1,5 @@
+---
+project:
+  type: website
+  output-dir: .
+  title: "MLOps Levels of Maturity"

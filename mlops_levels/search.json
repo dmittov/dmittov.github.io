@@ -1,0 +1,170 @@
+[
+  {
+    "objectID": "index.html#dmitry-mittov",
+    "href": "index.html#dmitry-mittov",
+    "title": "MLOps and it’s levels of maturity",
+    "section": "Dmitry Mittov",
+    "text": "Dmitry Mittov"
+  },
+  {
+    "objectID": "index.html#metropolis-gmbh",
+    "href": "index.html#metropolis-gmbh",
+    "title": "MLOps and it’s levels of maturity",
+    "section": "Metropolis GmbH",
+    "text": "Metropolis GmbH"
+  },
+  {
+    "objectID": "index.html#ceo-jon-fredersen",
+    "href": "index.html#ceo-jon-fredersen",
+    "title": "MLOps and it’s levels of maturity",
+    "section": "CEO Jon Fredersen",
+    "text": "CEO Jon Fredersen"
+  },
+  {
+    "objectID": "index.html#waterfall-project-value",
+    "href": "index.html#waterfall-project-value",
+    "title": "MLOps and it’s levels of maturity",
+    "section": "Waterfall Project Value",
+    "text": "Waterfall Project Value"
+  },
+  {
+    "objectID": "index.html#agile-project-value",
+    "href": "index.html#agile-project-value",
+    "title": "MLOps and it’s levels of maturity",
+    "section": "Agile Project Value",
+    "text": "Agile Project Value\n\n\nScrum: The Art of Doing Twice the Work in Half the Time"
+  },
+  {
+    "objectID": "index.html#four-key-metrics",
+    "href": "index.html#four-key-metrics",
+    "title": "MLOps and it’s levels of maturity",
+    "section": "Four Key Metrics",
+    "text": "Four Key Metrics\n\n\n\n\n%%{init: {\"theme\": \"dark\", \"themeVariables\": {\"fontSize\": \"12px\"}, \"flowchart\":{\"htmlLabels\":false}}}%%\nstateDiagram-v2\n    state \"Mean Time To Restore\" as mttr\n    state \"Lead Time To Change\" as lttc\n    state \"Deployment Frequency\" as df\n    state \"Change Failure Rate\" as cfr\n    state \"Productivity\" as p\n    mttr --> p\n    lttc --> p\n    df --> p\n    cfr --> p\n\n\n\n\n\n\n\n\n             \n\nAccelerate"
+  },
+  {
+    "objectID": "index.html#mlops",
+    "href": "index.html#mlops",
+    "title": "MLOps and it’s levels of maturity",
+    "section": "MLOps",
+    "text": "MLOps"
+  },
+  {
+    "objectID": "index.html#cto-rotwang-accepts-the-challenge",
+    "href": "index.html#cto-rotwang-accepts-the-challenge",
+    "title": "MLOps and it’s levels of maturity",
+    "section": "CTO Rotwang accepts the challenge",
+    "text": "CTO Rotwang accepts the challenge"
+  },
+  {
+    "objectID": "index.html#ml-tools",
+    "href": "index.html#ml-tools",
+    "title": "MLOps and it’s levels of maturity",
+    "section": "ML Tools",
+    "text": "ML Tools\n\n\nLinux Foundation AI & Data Foundation Interactive Landscape"
+  },
+  {
+    "objectID": "index.html#creating-a-company-mlops-platform",
+    "href": "index.html#creating-a-company-mlops-platform",
+    "title": "MLOps and it’s levels of maturity",
+    "section": "Creating a Company MLOps Platform",
+    "text": "Creating a Company MLOps Platform"
+  },
+  {
+    "objectID": "index.html#official-acceptance",
+    "href": "index.html#official-acceptance",
+    "title": "MLOps and it’s levels of maturity",
+    "section": "Official Acceptance",
+    "text": "Official Acceptance"
+  },
+  {
+    "objectID": "index.html#onboarding-in-teams",
+    "href": "index.html#onboarding-in-teams",
+    "title": "MLOps and it’s levels of maturity",
+    "section": "Onboarding in Teams",
+    "text": "Onboarding in Teams"
+  },
+  {
+    "objectID": "index.html#ml-in-production",
+    "href": "index.html#ml-in-production",
+    "title": "MLOps and it’s levels of maturity",
+    "section": "ML in production",
+    "text": "ML in production\n\n\nHidden Technical Debt in Machine Learning Systems NeurIPS 2015"
+  },
+  {
+    "objectID": "index.html#the-tower-of-babel",
+    "href": "index.html#the-tower-of-babel",
+    "title": "MLOps and it’s levels of maturity",
+    "section": "The tower of Babel",
+    "text": "The tower of Babel\nPeople spoke the same language, but could not understand each other …"
+  },
+  {
+    "objectID": "index.html#possible-pitfalls",
+    "href": "index.html#possible-pitfalls",
+    "title": "MLOps and it’s levels of maturity",
+    "section": "Possible Pitfalls",
+    "text": "Possible Pitfalls\n\nPrioritirisation\nOnboarding Strategy\nPlatform team responsibility\nMisunderstanding the needs of the ML teams\n…\n\n\nSoftware Engineering at Google: Lessons Learned from Programming Over Time"
+  },
+  {
+    "objectID": "index.html#swe-grot-protects-production-environment",
+    "href": "index.html#swe-grot-protects-production-environment",
+    "title": "MLOps and it’s levels of maturity",
+    "section": "SWE Grot Protects Production Environment",
+    "text": "SWE Grot Protects Production Environment"
+  },
+  {
+    "objectID": "index.html#mlops-maturity-models",
+    "href": "index.html#mlops-maturity-models",
+    "title": "MLOps and it’s levels of maturity",
+    "section": "MLOps Maturity Models",
+    "text": "MLOps Maturity Models\n\nGoogle model\nMicrosoft model\n\nBoth describe a way\nFrom a manual processs to a fully automated pipeline\nIn a few steps,\nPlay a role of a checklist"
+  },
+  {
+    "objectID": "index.html#microsoft-mlops-levels",
+    "href": "index.html#microsoft-mlops-levels",
+    "title": "MLOps and it’s levels of maturity",
+    "section": "Microsoft MLOps levels",
+    "text": "Microsoft MLOps levels\n\n\n\nLevel\nName\n\n\n\n\n0\nNo MLOps\n\n\n1\nDevOps no MLOps\n\n\n2\nAutomated Training\n\n\n3\nAutomated Model Deployment\n\n\n4\nFull MLOps Automated Retraining"
+  },
+  {
+    "objectID": "index.html#level-0-no-mlops",
+    "href": "index.html#level-0-no-mlops",
+    "title": "MLOps and it’s levels of maturity",
+    "section": "Level 0: No MLOps",
+    "text": "Level 0: No MLOps\n\nPeople\nModel Creation\nModel Release\nApplication Integration"
+  },
+  {
+    "objectID": "index.html#level-1-devops-no-mlops",
+    "href": "index.html#level-1-devops-no-mlops",
+    "title": "MLOps and it’s levels of maturity",
+    "section": "Level 1: DevOps no MLOps",
+    "text": "Level 1: DevOps no MLOps\n\nModel Creation\n\nData pipeline gathers data automatically\n\nApplication Integration\n\nBasic integration tests exist for the model\nReleases automated\nApplication code has unit tests"
+  },
+  {
+    "objectID": "index.html#level-2-automated-training",
+    "href": "index.html#level-2-automated-training",
+    "title": "MLOps and it’s levels of maturity",
+    "section": "Level 2: Automated Training",
+    "text": "Level 2: Automated Training\n\nModel Creation\n\nCompute is managed\nExperiment results are tracked\nCode and models are version controlled\n\nModel Release\n\nMerging to the main branch instead of sending a file by e-mail"
+  },
+  {
+    "objectID": "index.html#level-3-automated-model-deployment",
+    "href": "index.html#level-3-automated-model-deployment",
+    "title": "MLOps and it’s levels of maturity",
+    "section": "Level 3: Automated Model Deployment",
+    "text": "Level 3: Automated Model Deployment\n\nModel Release\n\nAutomatic release by a CI/CD pipeline\n\nApplication Integration\n\nUnit and integration tests for each model release\nLess reliant on data scientist expertise to implement model"
+  },
+  {
+    "objectID": "index.html#level-4-full-mlops-automated-retraining",
+    "href": "index.html#level-4-full-mlops-automated-retraining",
+    "title": "MLOps and it’s levels of maturity",
+    "section": "Level 4: Full MLOps Automated Retraining",
+    "text": "Level 4: Full MLOps Automated Retraining\n\nModel Creation\n\nRetraining triggered automatically based on production metrics\n\nPeople\n\nSWE, DE and DS working together to automate model integration into application code. Implementing post-deployment metrics gathering"
+  },
+  {
+    "objectID": "index.html#happy-end",
+    "href": "index.html#happy-end",
+    "title": "MLOps and it’s levels of maturity",
+    "section": "Happy end",
+    "text": "Happy end"
+  }
+]
