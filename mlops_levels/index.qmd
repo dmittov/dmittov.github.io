@@ -40,6 +40,7 @@ format:
         height="50"
     />
 </a>
+
 ---
 
 ### The mediator between ML models and Production Services must be the MLOps
@@ -164,24 +165,6 @@ stateDiagram-v2
 
 ---
 
-## ML in production
-
-![](https://cloud.google.com/static/architecture/images/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning-1-elements-of-ml.png)
-
-:::footer
-[Hidden Technical Debt in Machine Learning Systems](https://proceedings.neurips.cc/paper/2015/file/86df7dcfd896fcaf2674f757a2463eba-Paper.pdf) NeurIPS 2015
-:::
-
----
-
-## The tower of Babel
-
-People spoke the same language, but could not understand each other ...
-
-![](img/babel.png)
-
----
-
 ## Possible Pitfalls
 
 * Prioritirisation
@@ -198,6 +181,22 @@ People spoke the same language, but could not understand each other ...
 
 ---
 
+## ML in production
+
+![](https://cloud.google.com/static/architecture/images/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning-1-elements-of-ml.png)
+
+:::footer
+[Hidden Technical Debt in Machine Learning Systems](https://proceedings.neurips.cc/paper/2015/file/86df7dcfd896fcaf2674f757a2463eba-Paper.pdf) NeurIPS 2015
+:::
+
+---
+
+## The tower of Babel
+
+![](img/babel.png)
+
+---
+
 ## SWE Grot Protects Production Environment
 
 ![](img/grot.png)
@@ -207,15 +206,11 @@ People spoke the same language, but could not understand each other ...
 ## MLOps Maturity Models
 
 * [Google model](https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning)
+    * 3 levels
+    * Focus: Architecture
 * [Microsoft model](https://learn.microsoft.com/en-us/azure/architecture/example-scenario/mlops/mlops-maturity-model)
-
-Both describe a way
-
-From a manual processs to a fully automated pipeline
-
-In a few steps,
-
-Play a role of a checklist
+    * 5 levels
+    * Focus: Process & People
 
 ---
 
@@ -233,51 +228,47 @@ Play a role of a checklist
 
 ## Level 0: No MLOps
 
-* People
-* Model Creation
-* Model Release
-* Application Integration
+* High failure rate
+* Long time to restore
+
+<img style="float: right;" src="img/level0.jpeg"/>
 
 ---
 
 ## Level 1: DevOps no MLOps
 
-* Model Creation
-    * Data pipeline gathers data automatically
-* Application Integration
-    * Basic integration tests exist for the model
-    * Releases automated
-    * Application code has unit tests
+* (partially) Failure Rate
+* Time to Restore
+
+<img style="float: right;" src="img/level1.jpeg"/>
 
 ---
 
 ## Level 2: Automated Training
 
-* Model Creation
-    * Compute is managed
-    * Experiment results are tracked
-    * Code and models are version controlled
-* Model Release
-    * Merging to the main branch instead of sending a file by e-mail
+* Failure Rate
+* Lead Time to Change
+
+<img style="float: right;" src="img/level2.jpeg"/>
 
 ---
 
 ## Level 3: Automated Model Deployment
 
-* Model Release
-    * Automatic release by a CI/CD pipeline
-* Application Integration
-    * Unit and integration tests for each model release
-    * Less reliant on data scientist expertise to implement model
+* Deployment Frequency
+
+<img style="float: right;" src="img/level3.jpeg"/>
 
 ---
 
 ## Level 4: Full MLOps Automated Retraining
 
-* Model Creation
-    * Retraining triggered automatically based on production metrics
-* People
-    * SWE, DE and DS working together to automate model integration into application code. Implementing post-deployment metrics gathering
+Removes the toil work:
+
+* Deployment Frequency
+* Mean Time to Restore
+
+<img style="float: right;" src="img/level4.jpeg"/>
 
 ---
 
@@ -285,3 +276,12 @@ Play a role of a checklist
 
 ![](img/mediator.png)
 
+---
+
+## Conclusions
+
+* Roadmap > Final State
+* Iterate faster with smaller steps
+* Measure the impact
+
+<img style="float: right;" src="img/qr.png"/>

@@ -421,18 +421,6 @@ stateDiagram-v2
 <h2>Onboarding in Teams</h2>
 
 <img data-src="img/working-with-a-platform.png" class="r-stretch"></section>
-<section id="ml-in-production" class="slide level2">
-<h2>ML in production</h2>
-
-<img data-src="https://cloud.google.com/static/architecture/images/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning-1-elements-of-ml.png" class="r-stretch"><div class="footer">
-<p><a href="https://proceedings.neurips.cc/paper/2015/file/86df7dcfd896fcaf2674f757a2463eba-Paper.pdf">Hidden Technical Debt in Machine Learning Systems</a> NeurIPS 2015</p>
-</div>
-</section>
-<section id="the-tower-of-babel" class="slide level2">
-<h2>The tower of Babel</h2>
-<p>People spoke the same language, but could not understand each other …</p>
-
-<img data-src="img/babel.png" class="r-stretch"></section>
 <section id="possible-pitfalls" class="slide level2">
 <h2>Possible Pitfalls</h2>
 <ul>
@@ -446,6 +434,17 @@ stateDiagram-v2
 <p><a href="https://www.amazon.de/-/en/Titus-Winters/dp/1492082791">Software Engineering at Google: Lessons Learned from Programming Over Time</a></p>
 </div>
 </section>
+<section id="ml-in-production" class="slide level2">
+<h2>ML in production</h2>
+
+<img data-src="https://cloud.google.com/static/architecture/images/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning-1-elements-of-ml.png" class="r-stretch"><div class="footer">
+<p><a href="https://proceedings.neurips.cc/paper/2015/file/86df7dcfd896fcaf2674f757a2463eba-Paper.pdf">Hidden Technical Debt in Machine Learning Systems</a> NeurIPS 2015</p>
+</div>
+</section>
+<section id="the-tower-of-babel" class="slide level2">
+<h2>The tower of Babel</h2>
+
+<img data-src="img/babel.png" class="r-stretch"></section>
 <section id="swe-grot-protects-production-environment" class="slide level2">
 <h2>SWE Grot Protects Production Environment</h2>
 
@@ -453,13 +452,17 @@ stateDiagram-v2
 <section id="mlops-maturity-models" class="slide level2">
 <h2>MLOps Maturity Models</h2>
 <ul>
-<li><a href="https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning">Google model</a></li>
-<li><a href="https://learn.microsoft.com/en-us/azure/architecture/example-scenario/mlops/mlops-maturity-model">Microsoft model</a></li>
+<li><a href="https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning">Google model</a>
+<ul>
+<li>3 levels</li>
+<li>Focus: Architecture</li>
+</ul></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/architecture/example-scenario/mlops/mlops-maturity-model">Microsoft model</a>
+<ul>
+<li>5 levels</li>
+<li>Focus: Process &amp; People</li>
+</ul></li>
 </ul>
-<p>Both describe a way</p>
-<p>From a manual processs to a fully automated pipeline</p>
-<p>In a few steps,</p>
-<p>Play a role of a checklist</p>
 </section>
 <section id="microsoft-mlops-levels" class="slide level2">
 <h2>Microsoft MLOps levels</h2>
@@ -497,74 +500,57 @@ stateDiagram-v2
 <section id="level-0-no-mlops" class="slide level2">
 <h2>Level 0: No MLOps</h2>
 <ul>
-<li>People</li>
-<li>Model Creation</li>
-<li>Model Release</li>
-<li>Application Integration</li>
+<li>High failure rate</li>
+<li>Long time to restore</li>
 </ul>
-</section>
+
+<img style="float: right;" src="img/level0.jpeg" class="r-stretch"></section>
 <section id="level-1-devops-no-mlops" class="slide level2">
 <h2>Level 1: DevOps no MLOps</h2>
 <ul>
-<li>Model Creation
-<ul>
-<li>Data pipeline gathers data automatically</li>
-</ul></li>
-<li>Application Integration
-<ul>
-<li>Basic integration tests exist for the model</li>
-<li>Releases automated</li>
-<li>Application code has unit tests</li>
-</ul></li>
+<li>(partially) Failure Rate</li>
+<li>Time to Restore</li>
 </ul>
-</section>
+
+<img style="float: right;" src="img/level1.jpeg" class="r-stretch"></section>
 <section id="level-2-automated-training" class="slide level2">
 <h2>Level 2: Automated Training</h2>
 <ul>
-<li>Model Creation
-<ul>
-<li>Compute is managed</li>
-<li>Experiment results are tracked</li>
-<li>Code and models are version controlled</li>
-</ul></li>
-<li>Model Release
-<ul>
-<li>Merging to the main branch instead of sending a file by e-mail</li>
-</ul></li>
+<li>Failure Rate</li>
+<li>Lead Time to Change</li>
 </ul>
-</section>
+
+<img style="float: right;" src="img/level2.jpeg" class="r-stretch"></section>
 <section id="level-3-automated-model-deployment" class="slide level2">
 <h2>Level 3: Automated Model Deployment</h2>
 <ul>
-<li>Model Release
-<ul>
-<li>Automatic release by a CI/CD pipeline</li>
-</ul></li>
-<li>Application Integration
-<ul>
-<li>Unit and integration tests for each model release</li>
-<li>Less reliant on data scientist expertise to implement model</li>
-</ul></li>
+<li>Deployment Frequency</li>
 </ul>
-</section>
+
+<img style="float: right;" src="img/level3.jpeg" class="r-stretch"></section>
 <section id="level-4-full-mlops-automated-retraining" class="slide level2">
 <h2>Level 4: Full MLOps Automated Retraining</h2>
+<p>Removes the toil work:</p>
 <ul>
-<li>Model Creation
-<ul>
-<li>Retraining triggered automatically based on production metrics</li>
-</ul></li>
-<li>People
-<ul>
-<li>SWE, DE and DS working together to automate model integration into application code. Implementing post-deployment metrics gathering</li>
-</ul></li>
+<li>Deployment Frequency</li>
+<li>Mean Time to Restore</li>
 </ul>
-</section>
+
+<img style="float: right;" src="img/level4.jpeg" class="r-stretch"></section>
 <section id="happy-end" class="slide level2">
 <h2>Happy end</h2>
 
+<img data-src="img/mediator.png" class="r-stretch"></section>
+<section id="conclusions" class="slide level2">
+<h2>Conclusions</h2>
+<ul>
+<li>Roadmap &gt; Final State</li>
+<li>Iterate faster with smaller steps</li>
+<li>Measure the impact</li>
+</ul>
 
-<img data-src="img/mediator.png" class="r-stretch"><div class="footer footer-default">
+
+<img style="float: right;" src="img/qr.png" class="r-stretch"><div class="footer footer-default">
 
 </div>
 </section>
