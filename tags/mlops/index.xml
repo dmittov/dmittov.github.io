@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mlops on Dmitry Mittov</title>
+    <link>https://dmittov.github.io/tags/mlops/</link>
+    <description>Recent content in mlops on Dmitry Mittov</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 20 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://dmittov.github.io/tags/mlops/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MPOps and its maturity levels</title>
+      <link>https://dmittov.github.io/posts/mlops-maturity-levels/</link>
+      <pubDate>Mon, 20 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://dmittov.github.io/posts/mlops-maturity-levels/</guid>
+      <description>Info https://www.meetup.com/berlin-open-data-science/events/291447755/
+Slides</description>
+    </item>
+    
+  </channel>
+</rss>

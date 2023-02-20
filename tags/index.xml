@@ -5,22 +5,49 @@
     <link>https://dmittov.github.io/tags/</link>
     <description>Recent content in Tags on Dmitry Mittov</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 31 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://dmittov.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 20 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://dmittov.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>hugo</title>
-      <link>https://dmittov.github.io/tags/hugo/</link>
-      <pubDate>Tue, 31 Jan 2023 00:00:00 +0000</pubDate>
+      <title>ml</title>
+      <link>https://dmittov.github.io/tags/ml/</link>
+      <pubDate>Mon, 20 Feb 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://dmittov.github.io/tags/hugo/</guid>
+      <guid>https://dmittov.github.io/tags/ml/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>themes</title>
-      <link>https://dmittov.github.io/tags/themes/</link>
+      <title>mlops</title>
+      <link>https://dmittov.github.io/tags/mlops/</link>
+      <pubDate>Mon, 20 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://dmittov.github.io/tags/mlops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>slides</title>
+      <link>https://dmittov.github.io/tags/slides/</link>
+      <pubDate>Mon, 20 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://dmittov.github.io/tags/slides/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>bayes</title>
+      <link>https://dmittov.github.io/tags/bayes/</link>
       <pubDate>Tue, 31 Jan 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://dmittov.github.io/tags/themes/</guid>
+      <guid>https://dmittov.github.io/tags/bayes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>deep learning</title>
+      <link>https://dmittov.github.io/tags/deep-learning/</link>
+      <pubDate>Tue, 31 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://dmittov.github.io/tags/deep-learning/</guid>
       <description></description>
     </item>
     

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Dmitry Mittov</title>
-    <link>https://dmittov.github.io/</link>
-    <description>Recent content on Dmitry Mittov</description>
+    <title>ml on Dmitry Mittov</title>
+    <link>https://dmittov.github.io/tags/ml/</link>
+    <description>Recent content in ml on Dmitry Mittov</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 20 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://dmittov.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 20 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://dmittov.github.io/tags/ml/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>MPOps and its maturity levels</title>
       <link>https://dmittov.github.io/posts/mlops-maturity-levels/</link>
@@ -24,15 +24,6 @@ Slides</description>
       <guid>https://dmittov.github.io/posts/variational-dropout/</guid>
       <description>Info https://www.meetup.com/berlinbayesians/events/290620373/
 Slides</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://dmittov.github.io/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://dmittov.github.io/about/</guid>
-      <description>TBD</description>
     </item>
     
   </channel>

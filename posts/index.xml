@@ -5,7 +5,17 @@
     <link>https://dmittov.github.io/posts/</link>
     <description>Recent content in Posts on Dmitry Mittov</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 31 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://dmittov.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 20 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://dmittov.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MPOps and its maturity levels</title>
+      <link>https://dmittov.github.io/posts/mlops-maturity-levels/</link>
+      <pubDate>Mon, 20 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://dmittov.github.io/posts/mlops-maturity-levels/</guid>
+      <description>Info https://www.meetup.com/berlin-open-data-science/events/291447755/
+Slides</description>
+    </item>
+    
     <item>
       <title>Bayesians Neural Networks and Variational Dropout</title>
       <link>https://dmittov.github.io/posts/variational-dropout/</link>
