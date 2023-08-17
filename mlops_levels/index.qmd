@@ -1,5 +1,5 @@
 ---
-title: "MLOps and it's levels of maturity"
+title: "MLOps and its levels of maturity"
 format:
   revealjs:
     slide-number: true
