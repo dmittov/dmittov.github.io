@@ -6,8 +6,8 @@
 <script src="slides_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="slides_files/libs/quarto-html/quarto-syntax-highlighting-dark-1b3db88def35042d172274863c1cdcf0.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.26">
+<link href="slides_files/libs/quarto-html/quarto-syntax-highlighting-dark-9e15f8fb9e1f2f288bfbe28f6ca11029.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.27">
 
   <title>Coding Agent Internals: how to make an Agent from Scratch</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -211,7 +211,6 @@
 </section>
 <section id="vibe-coding-ai-assistant" class="slide level2">
 <h2>Vibe coding != AI Assistant</h2>
-<div class="list-small-text">
 <div class="columns">
 <div class="column">
 <ul>
@@ -221,22 +220,21 @@
 </div><div class="column">
 <p><img data-src="./img/vibe.png" style="max-height: 70vh; object-fit: contain;"></p>
 </div></div>
-</div>
 </section>
 <section id="focus-goal" class="slide level2">
 <h2>Focus &amp; Goal</h2>
-<div class="list-small-text">
 <ul>
 <li>No debate whether vibe coding is “good” or “bad”.</li>
 <li>Take an LM as a black box, no LLM internals, no math.</li>
 <li>Know how to build a coding agent from scratch using LLM</li>
 </ul>
 <p>It’s a good guideline / check list to build agents for your practical tasks.</p>
+<div class="focus-goal-footer">
+<p><img src="./img/goal_footer.png" style="" alt="Robot coaching a road cyclist, DJ support, and fashion photography collage"></p>
 </div>
 </section>
 <section id="vibe-coding-tools" class="slide level2">
 <h2>Vibe Coding Tools</h2>
-<div class="list-small-text">
 <ul>
 <li>Claude Code</li>
 <li>Cursor AI</li>
@@ -245,45 +243,25 @@
 <li>Gemini CLI</li>
 <li>Qwen CLI</li>
 </ul>
-</div>
 </section>
 <section id="gemini-cli" class="slide level2">
 <h2>Gemini CLI</h2>
-<div class="list-small-text">
 <ul>
 <li>Open Source: https://github.com/google-gemini/gemini-cli</li>
 <li>gemini-2.5-pro / gemini-3-pro are good enough</li>
 <li>Hides nothing, prompt processing is done inside a client’s application</li>
 </ul>
-</div>
 </section>
-<section id="system-prompt" class="slide level2">
-<h2>System prompt</h2>
+<section id="system-prompt-size" class="slide level2">
+<h2>System prompt size</h2>
 <p><code>src/core/prompts.ts</code></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource ts code-small-text number-lines code-with-copy"><code class="sourceCode typescript"><span id="cb1-1"><a href=""></a><span class="st">"Analyse my application. Find all the security issues and fix them"</span><span class="op">.</span><span class="at">length</span> <span class="op">=</span> <span class="dv">65</span> <span class="op">/</span> <span class="dv">13</span></span>
-<span id="cb1-2"><a href=""></a>turn<span class="op">.</span><span class="at">chat</span><span class="op">.</span><span class="at">systemInstruction</span><span class="op">.</span><span class="at">length</span> <span class="op">=</span> <span class="dv">16335</span> <span class="op">/</span> <span class="dv">3518</span> (<span class="dv">250</span> times larger)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource markdown code-small-text number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href=""></a>You are an interactive CLI agent specializing in software engineering tasks.</span>
-<span id="cb2-2"><a href=""></a>Your primary goal is to help users safely and efficiently, adhering strictly to the following instructions </span>
-<span id="cb2-3"><a href=""></a>and utilizing your available tools.</span>
-<span id="cb2-4"><a href=""></a></span>
-<span id="cb2-5"><a href=""></a><span class="fu"># Core Mandates</span></span>
-<span id="cb2-6"><a href=""></a></span>
-<span id="cb2-7"><a href=""></a><span class="ss">- </span>**Conventions:** Rigorously adhere to existing project conventions when reading or modifying code. ...</span>
-<span id="cb2-8"><a href=""></a><span class="ss">- </span>**Libraries/Frameworks:** NEVER assume a library/framework is available or appropriate. ...</span>
-<span id="cb2-9"><a href=""></a>...</span>
-<span id="cb2-10"><a href=""></a></span>
-<span id="cb2-11"><a href=""></a><span class="fu"># Primary Workflows</span></span>
-<span id="cb2-12"><a href=""></a></span>
-<span id="cb2-13"><a href=""></a><span class="fu">## Software Engineering Tasks</span></span>
-<span id="cb2-14"><a href=""></a>...</span>
-<span id="cb2-15"><a href=""></a><span class="ss">1. </span>**Understand &amp; Strategize:** Think about the user's request and the relevant codebase context. ...</span>
-<span id="cb2-16"><a href=""></a><span class="ss">2. </span>**Plan:** Build a coherent and grounded ...</span>
-<span id="cb2-17"><a href=""></a><span class="ss">3. </span>**Implement:** Use the available tools (e.g., '${EDIT_TOOL_NAME}', '${WRITE_FILE_TOOL_NAME}' ...</span>
-<span id="cb2-18"><a href=""></a><span class="ss">4. </span>**Verify (Tests):** If applicable and feasible, verify the changes using the project's testing procedures ...</span>
-<span id="cb2-19"><a href=""></a><span class="ss">5. </span>**Verify (Standards):** VERY IMPORTANT: After making code changes, execute the project-specific build, linting ...</span>
-<span id="cb2-20"><a href=""></a>...</span>
-<span id="cb2-21"><a href=""></a><span class="fu">## New Applications</span></span>
-<span id="cb2-22"><a href=""></a>...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode ts code-small-text code-with-copy"><code class="sourceCode typescript"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="st">"Analyse my application. Find all the security issues and fix them"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Phrase: 13 tokens / 65 characters</li>
+<li>System Instructions: 3’518 tokens / 16’335 characters</li>
+<li>Lord of the Rings: ~900’000 tokens</li>
+<li>Model context window: 1’000’000 tokens / $2.5</li>
+</ul>
 </section>
 <section id="system-prompt-structure" class="slide level2">
 <h2>System prompt structure</h2>
@@ -309,6 +287,32 @@
 <li>Final Reminder</li>
 </ul>
 </div>
+</section>
+<section id="system-prompt" class="slide level2">
+<h2>System prompt</h2>
+<p><code>src/core/prompts.ts</code></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource markdown code-small-text number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href=""></a>You are an interactive CLI agent specializing in software engineering tasks.</span>
+<span id="cb2-2"><a href=""></a>Your primary goal is to help users safely and efficiently, adhering strictly to the following instructions </span>
+<span id="cb2-3"><a href=""></a>and utilizing your available tools.</span>
+<span id="cb2-4"><a href=""></a></span>
+<span id="cb2-5"><a href=""></a><span class="fu"># Core Mandates</span></span>
+<span id="cb2-6"><a href=""></a></span>
+<span id="cb2-7"><a href=""></a><span class="ss">- </span>**Conventions:** Rigorously adhere to existing project conventions when reading or modifying code. ...</span>
+<span id="cb2-8"><a href=""></a><span class="ss">- </span>**Libraries/Frameworks:** NEVER assume a library/framework is available or appropriate. ...</span>
+<span id="cb2-9"><a href=""></a>...</span>
+<span id="cb2-10"><a href=""></a></span>
+<span id="cb2-11"><a href=""></a><span class="fu"># Primary Workflows</span></span>
+<span id="cb2-12"><a href=""></a></span>
+<span id="cb2-13"><a href=""></a><span class="fu">## Software Engineering Tasks</span></span>
+<span id="cb2-14"><a href=""></a>...</span>
+<span id="cb2-15"><a href=""></a><span class="ss">1. </span>**Understand &amp; Strategize:** Think about the user's request and the relevant codebase context. ...</span>
+<span id="cb2-16"><a href=""></a><span class="ss">2. </span>**Plan:** Build a coherent and grounded ...</span>
+<span id="cb2-17"><a href=""></a><span class="ss">3. </span>**Implement:** Use the available tools (e.g., '${EDIT_TOOL_NAME}', '${WRITE_FILE_TOOL_NAME}' ...</span>
+<span id="cb2-18"><a href=""></a><span class="ss">4. </span>**Verify (Tests):** If applicable and feasible, verify the changes using the project's testing procedures ...</span>
+<span id="cb2-19"><a href=""></a><span class="ss">5. </span>**Verify (Standards):** VERY IMPORTANT: After making code changes, execute the project-specific build, linting ...</span>
+<span id="cb2-20"><a href=""></a>...</span>
+<span id="cb2-21"><a href=""></a><span class="fu">## New Applications</span></span>
+<span id="cb2-22"><a href=""></a>...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="prompting" class="slide level2">
 <h2>Prompting</h2>
@@ -1160,7 +1164,7 @@ Misc
 <li>Sub-Agents:
 <ul>
 <li>prompt grows like a snowball, sub-agents help to keep prompts smaller</li>
-<li>quality degrades when have too many tools</li>
+<li>quality degrades when have too many agents</li>
 </ul></li>
 <li>Model Router: Gemini CLI picks between <code>gemini-2.5-pro</code>, <code>gemini-2.5-flash</code>, checks if <code>gemini-3-pro-preview</code> is available. <code>gemini-2.5-flash-lite</code> is used for the router prompt.</li>
 <li>Skills: a new feature, introduced in end of 2025 (Anthropic) / Jan 2026 (Gemini CLI)</li>
@@ -1224,6 +1228,168 @@ Misc
 <li>Agentic Skills https://geminicli.com/docs/cli/skills/ https://agentskills.io/home</li>
 </ul>
 </div>
+</section>
+<section id="openclaw-своими-руками" class="slide level2">
+<h2>OpenClaw своими руками</h2>
+<p>Из спичек и желудей</p>
+<div class="focus-goal-footer">
+<p><img src="./img/bot.webp" style="" alt="Bot"></p>
+</div>
+</section>
+<section id="openclaw-своими-руками-signatute" class="slide level2">
+<h2>OpenClaw своими руками [signatute]</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource python code-small-text number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href=""></a><span class="im">import</span> asyncio</span>
+<span id="cb18-2"><a href=""></a><span class="im">import</span> dspy</span>
+<span id="cb18-3"><a href=""></a><span class="im">import</span> click</span>
+<span id="cb18-4"><a href=""></a></span>
+<span id="cb18-5"><a href=""></a></span>
+<span id="cb18-6"><a href=""></a><span class="kw">class</span> AgentSignature(dspy.Signature):</span>
+<span id="cb18-7"><a href=""></a>    <span class="co">"""Your task is to answer a users request.</span></span>
+<span id="cb18-8"><a href=""></a><span class="co">    You are running on OS X 24.6.0 System.</span></span>
+<span id="cb18-9"><a href=""></a><span class="co">    You are running on a real machine, not a sandbox, never delete files.</span></span>
+<span id="cb18-10"><a href=""></a><span class="co">    """</span></span>
+<span id="cb18-11"><a href=""></a></span>
+<span id="cb18-12"><a href=""></a>    users_request: <span class="bu">str</span> <span class="op">=</span> dspy.InputField(desc<span class="op">=</span><span class="st">"Users request"</span>)</span>
+<span id="cb18-13"><a href=""></a>    answer: <span class="bu">str</span> <span class="op">=</span> dspy.OutputField(desc<span class="op">=</span><span class="st">"Your answer"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="openclaw-своими-руками-tools" class="slide level2">
+<h2>OpenClaw своими руками [tools]</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python code-small-text number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href=""></a><span class="cf">async</span> <span class="kw">def</span> run_zsh(command: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb19-2"><a href=""></a>    <span class="co">"""</span></span>
+<span id="cb19-3"><a href=""></a><span class="co">    Run a shell command in zsh and return stdout/stderr plus exit code.</span></span>
+<span id="cb19-4"><a href=""></a></span>
+<span id="cb19-5"><a href=""></a><span class="co">    Args:</span></span>
+<span id="cb19-6"><a href=""></a><span class="co">        command: The shell command to execute.</span></span>
+<span id="cb19-7"><a href=""></a></span>
+<span id="cb19-8"><a href=""></a><span class="co">    Returns:</span></span>
+<span id="cb19-9"><a href=""></a><span class="co">        A formatted string with exit code, stdout, and stderr.</span></span>
+<span id="cb19-10"><a href=""></a><span class="co">    """</span></span>
+<span id="cb19-11"><a href=""></a>    timeout: <span class="bu">float</span> <span class="op">=</span> <span class="fl">300.0</span></span>
+<span id="cb19-12"><a href=""></a>    <span class="cf">try</span>:</span>
+<span id="cb19-13"><a href=""></a>        proc <span class="op">=</span> <span class="cf">await</span> asyncio.create_subprocess_exec(</span>
+<span id="cb19-14"><a href=""></a>            <span class="st">"zsh"</span>,</span>
+<span id="cb19-15"><a href=""></a>            <span class="st">"-c"</span>,</span>
+<span id="cb19-16"><a href=""></a>            command,</span>
+<span id="cb19-17"><a href=""></a>            stdout<span class="op">=</span>asyncio.subprocess.PIPE,</span>
+<span id="cb19-18"><a href=""></a>            stderr<span class="op">=</span>asyncio.subprocess.PIPE,</span>
+<span id="cb19-19"><a href=""></a>        )</span>
+<span id="cb19-20"><a href=""></a></span>
+<span id="cb19-21"><a href=""></a>        stdout, stderr <span class="op">=</span> <span class="cf">await</span> asyncio.wait_for(proc.communicate(), timeout<span class="op">=</span>timeout)</span>
+<span id="cb19-22"><a href=""></a></span>
+<span id="cb19-23"><a href=""></a>        out <span class="op">=</span> stdout.decode(<span class="st">"utf-8"</span>, errors<span class="op">=</span><span class="st">"replace"</span>).strip()</span>
+<span id="cb19-24"><a href=""></a>        err <span class="op">=</span> stderr.decode(<span class="st">"utf-8"</span>, errors<span class="op">=</span><span class="st">"replace"</span>).strip()</span>
+<span id="cb19-25"><a href=""></a></span>
+<span id="cb19-26"><a href=""></a>        <span class="cf">return</span> (</span>
+<span id="cb19-27"><a href=""></a>            <span class="ss">f"exit_code: </span><span class="sc">{</span>proc<span class="sc">.</span>returncode<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span></span>
+<span id="cb19-28"><a href=""></a>            <span class="ss">f"stdout:</span><span class="ch">\n</span><span class="sc">{</span>out <span class="kw">or</span> <span class="st">'&lt;empty&gt;'</span><span class="sc">}</span><span class="ch">\n\n</span><span class="ss">"</span></span>
+<span id="cb19-29"><a href=""></a>            <span class="ss">f"stderr:</span><span class="ch">\n</span><span class="sc">{</span>err <span class="kw">or</span> <span class="st">'&lt;empty&gt;'</span><span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb19-30"><a href=""></a>        )</span>
+<span id="cb19-31"><a href=""></a></span>
+<span id="cb19-32"><a href=""></a>    <span class="cf">except</span> asyncio.<span class="pp">TimeoutError</span>:</span>
+<span id="cb19-33"><a href=""></a>        <span class="cf">try</span>:</span>
+<span id="cb19-34"><a href=""></a>            proc.kill()</span>
+<span id="cb19-35"><a href=""></a>            <span class="cf">await</span> proc.wait()</span>
+<span id="cb19-36"><a href=""></a>        <span class="cf">except</span> <span class="pp">Exception</span>:</span>
+<span id="cb19-37"><a href=""></a>            <span class="cf">pass</span></span>
+<span id="cb19-38"><a href=""></a>        <span class="cf">return</span> (</span>
+<span id="cb19-39"><a href=""></a>            <span class="st">"exit_code: -1</span><span class="ch">\n</span><span class="st">stdout:</span><span class="ch">\n</span><span class="st">&lt;empty&gt;</span><span class="ch">\n\n</span><span class="st">stderr:</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb19-40"><a href=""></a>            <span class="ss">f"Command timed out after </span><span class="sc">{</span>timeout<span class="sc">}</span><span class="ss"> seconds"</span></span>
+<span id="cb19-41"><a href=""></a>        )</span>
+<span id="cb19-42"><a href=""></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb19-43"><a href=""></a>        <span class="cf">return</span> <span class="ss">f"exit_code: -1</span><span class="ch">\n</span><span class="ss">stdout:</span><span class="ch">\n</span><span class="ss">&lt;empty&gt;</span><span class="ch">\n\n</span><span class="ss">stderr:</span><span class="ch">\n</span><span class="sc">{</span><span class="bu">type</span>(e)<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="openclaw-своими-руками-main" class="slide level2">
+<h2>OpenClaw своими руками [main]</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python code-small-text number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href=""></a><span class="cf">async</span> <span class="kw">def</span> main(prompt: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb20-2"><a href=""></a>    dspy.configure(</span>
+<span id="cb20-3"><a href=""></a>        lm<span class="op">=</span>dspy.LM(<span class="st">"vertex_ai/gemini-2.5-pro"</span>),</span>
+<span id="cb20-4"><a href=""></a>    )</span>
+<span id="cb20-5"><a href=""></a>    agent <span class="op">=</span> dspy.ReAct(</span>
+<span id="cb20-6"><a href=""></a>        signature<span class="op">=</span>AgentSignature,</span>
+<span id="cb20-7"><a href=""></a>        tools<span class="op">=</span>[run_zsh],</span>
+<span id="cb20-8"><a href=""></a>        max_iters<span class="op">=</span><span class="dv">10</span>,</span>
+<span id="cb20-9"><a href=""></a>    )</span>
+<span id="cb20-10"><a href=""></a>    result <span class="op">=</span> <span class="cf">await</span> agent.acall(users_request<span class="op">=</span>prompt)</span>
+<span id="cb20-11"><a href=""></a>    <span class="bu">print</span>(result.answer)</span>
+<span id="cb20-12"><a href=""></a></span>
+<span id="cb20-13"><a href=""></a></span>
+<span id="cb20-14"><a href=""></a><span class="at">@click.command</span>()</span>
+<span id="cb20-15"><a href=""></a><span class="at">@click.option</span>(<span class="st">"--prompt"</span>)</span>
+<span id="cb20-16"><a href=""></a><span class="kw">def</span> main_wrapper(prompt: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb20-17"><a href=""></a>    asyncio.run(main(prompt))</span>
+<span id="cb20-18"><a href=""></a></span>
+<span id="cb20-19"><a href=""></a></span>
+<span id="cb20-20"><a href=""></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb20-21"><a href=""></a>    main_wrapper()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section class="slide level2">
+
+<p>Example Run [System Report]</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource bash code-small-text number-lines code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href=""></a><span class="ex">$</span> python agent.py <span class="at">--prompt</span> <span class="st">"Сделай отчет по системе. Ответь на следующие вопросы: </span><span class="dt">\</span></span>
+<span id="cb21-2"><a href=""></a><span class="st">  1. Каково мое текущее состояние батареи? </span><span class="dt">\</span></span>
+<span id="cb21-3"><a href=""></a><span class="st">  2. Какие запущенные приложения в данный момент занимают больше всего физической памяти? </span><span class="dt">\</span></span>
+<span id="cb21-4"><a href=""></a><span class="st">  </span></span>
+<span id="cb21-5"><a href=""></a><span class="st">  Дай список из top 5, скажи сколько физической памяти они занимают."</span></span>
+<span id="cb21-6"><a href=""></a></span>
+<span id="cb21-7"><a href=""></a><span class="ex">Конечно,</span> вот отчет по вашей системе:</span>
+<span id="cb21-8"><a href=""></a></span>
+<span id="cb21-9"><a href=""></a><span class="ex">**1.</span> Состояние батареи:<span class="pp">**</span></span>
+<span id="cb21-10"><a href=""></a><span class="ex">Ваша</span> батарея заряжена на <span class="pp">**</span>39%<span class="pp">**</span> и в данный момент не заряжается <span class="er">(</span><span class="ex">режим</span> разрядки<span class="kw">)</span><span class="bu">.</span></span>
+<span id="cb21-11"><a href=""></a><span class="ex">Расчетное</span> оставшееся время работы от батареи составляет <span class="pp">**</span>4 часа 5 минут<span class="pp">**</span>.</span>
+<span id="cb21-12"><a href=""></a></span>
+<span id="cb21-13"><a href=""></a><span class="ex">**2.</span> Топ-5 приложений по использованию физической памяти:<span class="pp">**</span></span>
+<span id="cb21-14"><a href=""></a><span class="ex">Вот</span> список из 5 процессов, которые в данный момент занимают больше всего физической памяти:</span>
+<span id="cb21-15"><a href=""></a></span>
+<span id="cb21-16"><a href=""></a><span class="ex">1.</span>  <span class="pp">**</span>Code Helper <span class="er">(</span><span class="ex">Renderer</span><span class="kw">)</span><span class="ex">**</span> <span class="er">(</span><span class="ex">процесс</span> Visual Studio Code<span class="kw">)</span><span class="bu">:</span> ~458 МБ</span>
+<span id="cb21-17"><a href=""></a><span class="ex">2.</span>  <span class="pp">**</span>Code Helper <span class="er">(</span><span class="ex">Plugin</span><span class="kw">)</span><span class="ex">**</span> <span class="er">(</span><span class="ex">процесс</span> Visual Studio Code<span class="kw">)</span><span class="bu">:</span> ~407 МБ</span>
+<span id="cb21-18"><a href=""></a><span class="ex">3.</span>  <span class="pp">**</span>Safari<span class="pp">**</span>: ~380 МБ</span>
+<span id="cb21-19"><a href=""></a><span class="ex">4.</span>  <span class="pp">**</span>com.apple.WebKit.WebContent<span class="pp">**</span> <span class="er">(</span><span class="ex">процесс</span> Safari для отображения веб-контента<span class="kw">)</span><span class="bu">:</span> ~354 МБ</span>
+<span id="cb21-20"><a href=""></a><span class="ex">5.</span>  <span class="pp">**</span>com.apple.WebKit.WebContent<span class="pp">**</span> <span class="er">(</span><span class="ex">процесс</span> Safari для отображения веб-контента<span class="kw">)</span><span class="bu">:</span> ~338 МБ</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section class="slide level2">
+
+<p>Example Run [System Report / commands]</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource bash code-small-text number-lines code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href=""></a><span class="ex">$</span> pmset <span class="at">-g</span> batt</span>
+<span id="cb22-2"><a href=""></a><span class="ex">Now</span> drawing from <span class="st">'Battery Power'</span></span>
+<span id="cb22-3"><a href=""></a> <span class="ex">-InternalBattery-0</span> <span class="er">(</span><span class="va">id</span><span class="op">=</span>34537571<span class="kw">)</span>   <span class="ex">38%</span><span class="kw">;</span> <span class="ex">discharging</span><span class="kw">;</span> <span class="ex">3:45</span> remaining present: true</span>
+<span id="cb22-4"><a href=""></a></span>
+<span id="cb22-5"><a href=""></a><span class="ex">$</span> ps <span class="at">-ax</span> <span class="at">-o</span> comm,rss <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-k2nr</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 5</span>
+<span id="cb22-6"><a href=""></a><span class="ex">/System/Library/</span> 511296</span>
+<span id="cb22-7"><a href=""></a><span class="ex">/System/Library/</span> 471968</span>
+<span id="cb22-8"><a href=""></a><span class="ex">/Applications/Vi</span> 455296</span>
+<span id="cb22-9"><a href=""></a><span class="ex">/Applications/Vi</span> 430272</span>
+<span id="cb22-10"><a href=""></a><span class="ex">/System/Volumes/</span> 397824</span>
+<span id="cb22-11"><a href=""></a></span>
+<span id="cb22-12"><a href=""></a><span class="ex">$</span> ps <span class="at">-ax</span> <span class="at">-o</span> rss,command <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-nr</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 5</span>
+<span id="cb22-13"><a href=""></a><span class="ex">446224</span> /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent</span>
+<span id="cb22-14"><a href=""></a><span class="ex">436192</span> /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper <span class="er">(</span><span class="ex">Plugin</span><span class="kw">)</span><span class="ex">.app/Contents/MacOS/Code</span> Helper <span class="er">(</span><span class="ex">Plugin</span><span class="kw">)</span> <span class="ex">/Users/dmitry/.vscode/extensions/ms-python.vscode-pylance-2026.1.1/dist/server.bundle.js</span> <span class="at">--cancellationReceive</span><span class="op">=</span>file:c929d4b9070cbba262b6275aafaca1165d841808ba <span class="at">--node-ipc</span> <span class="at">--clientProcessId</span><span class="op">=</span>41455</span>
+<span id="cb22-15"><a href=""></a><span class="ex">431760</span> /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper <span class="er">(</span><span class="ex">Renderer</span><span class="kw">)</span><span class="ex">.app/Contents/MacOS/Code</span> Helper <span class="er">(</span><span class="ex">Renderer</span><span class="kw">)</span> <span class="ex">--type=renderer</span> <span class="at">--user-data-dir</span><span class="op">=</span>/Users/dmitry/Library/Application Support/Code <span class="at">--standard-schemes</span><span class="op">=</span>vscode-webview,vscode-file <span class="at">--enable-sandbox</span> <span class="at">--secure-schemes</span><span class="op">=</span>vscode-webview,vscode-file <span class="at">--cors-schemes</span><span class="op">=</span>vscode-webview,vscode-file <span class="at">--fetch-schemes</span><span class="op">=</span>vscode-webview,vscode-file <span class="at">--service-worker-schemes</span><span class="op">=</span>vscode-webview <span class="at">--code-cache-schemes</span><span class="op">=</span>vscode-webview,vscode-file <span class="at">--app-path</span><span class="op">=</span>/Applications/Visual Studio Code.app/Contents/Resources/app <span class="at">--enable-sandbox</span> <span class="at">--enable-blink-features</span><span class="op">=</span>HighlightAPI <span class="at">--max-active-webgl-contexts</span><span class="op">=</span>32 <span class="at">--disable-blink-features</span><span class="op">=</span>FontMatchingCTMigration,StandardizedBrowserZoom, <span class="at">--lang</span><span class="op">=</span>en-GB <span class="at">--num-raster-threads</span><span class="op">=</span>4 <span class="at">--enable-zero-copy</span> <span class="at">--enable-gpu-memory-buffer-compositor-resources</span> <span class="at">--enable-main-frame-before-activation</span> <span class="at">--renderer-client-id</span><span class="op">=</span>19 <span class="at">--time-ticks-at-unix-epoch</span><span class="op">=</span>-1773044531133602 <span class="at">--launch-time-ticks</span><span class="op">=</span>151658355190 <span class="at">--shared-files</span> <span class="at">--field-trial-handle</span><span class="op">=</span>1718379636,r,9352600272208397240,5923980680224771837,262144 <span class="at">--enable-features</span><span class="op">=</span>DocumentPolicyIncludeJSCallStacksInCrashReports,EarlyEstablishGpuChannel,EstablishGpuChannelAsync,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma <span class="at">--disable-features</span><span class="op">=</span>CalculateNativeWinOcclusion,LocalNetworkAccessChecks,MacWebContentsOcclusion,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation <span class="at">--variations-seed-version</span> <span class="at">--trace-process-track-uuid</span><span class="op">=</span>3190709004115666625 <span class="at">--vscode-window-config</span><span class="op">=</span>vscode:5956124d-1392-422d-9f90-097e3d671603 <span class="at">--seatbelt-client</span><span class="op">=</span>116</span>
+<span id="cb22-16"><a href=""></a><span class="ex">398288</span> /System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app/Contents/MacOS/Safari</span>
+<span id="cb22-17"><a href=""></a><span class="ex">392800</span> /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section class="slide level2">
+
+<p>Example Run [Weather]</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource bash code-small-text number-lines code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href=""></a><span class="ex">$</span> python main.py <span class="at">--prompt</span> <span class="st">"Какая сейчас погода в Берлине?"</span></span>
+<span id="cb23-2"><a href=""></a></span>
+<span id="cb23-3"><a href=""></a><span class="ex">Сейчас</span> в Берлине солнечно.</span>
+<span id="cb23-4"><a href=""></a><span class="ex">-</span> Температура: +14°C <span class="er">(</span><span class="ex">ощущается</span> как +13°C<span class="kw">)</span></span>
+<span id="cb23-5"><a href=""></a><span class="ex">-</span> Ветер: 17 км/ч</span>
+<span id="cb23-6"><a href=""></a><span class="ex">-</span> Видимость: 10 км</span>
+<span id="cb23-7"><a href=""></a><span class="ex">-</span> Осадки: 0.0 мм</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section class="slide level2">
+
+<p>Example Run [Weather / commands]</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode numberSource python code-small-text number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href=""></a>trajectory[<span class="st">"thought_0"</span>] <span class="op">=</span> (</span>
+<span id="cb24-2"><a href=""></a>  <span class="st">"The user is asking for the current weather in Berlin. I can use the `curl` "</span></span>
+<span id="cb24-3"><a href=""></a>  <span class="st">"command with `wttr.in` to get this information. "</span></span>
+<span id="cb24-4"><a href=""></a>  <span class="st">"I will specify the language as Russian to match the user's request."</span></span>
+<span id="cb24-5"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource bash code-small-text number-lines code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href=""></a><span class="ex">$</span> curl wttr.in/Berlin<span class="pp">?</span>lang=ru</span>
+<span id="cb25-2"><a href=""></a><span class="cf">return</span> <span class="ex">code</span> = 1</span>
+<span id="cb25-3"><a href=""></a><span class="ex">$</span> curl <span class="st">'wttr.in/Berlin?lang=ru'</span></span>
+<span id="cb25-4"><a href=""></a><span class="ex">...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </section>
     </div>
