@@ -86,3 +86,16 @@
   font-size: 0.7em;
   line-height: 1.2;
 }
+
+.reveal .focus-goal-footer {
+  margin-top: 1.2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.reveal .focus-goal-footer img {
+  width: min(88vw, 1280px);
+  max-height: 44vh;
+  object-fit: contain;
+  opacity: 0.96;
+}

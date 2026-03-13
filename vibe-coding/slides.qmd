@@ -49,6 +49,10 @@ format:
 It's a good guideline / check list to build agents for your practical tasks.
 </div>
 
+<div class="focus-goal-footer">
+  <img src="./img/goal_footer.png" style="" alt="Robot coaching a road cyclist, DJ support, and fashion photography collage"/>
+</div>
+
 ---
 
 ## Vibe Coding Tools
@@ -74,14 +78,45 @@ It's a good guideline / check list to build agents for your practical tasks.
 
 ---
 
-## System prompt
+## System prompt size
 
 `src/core/prompts.ts`
 
-```ts {.code-small-text}
-"Analyse my application. Find all the security issues and fix them".length = 65 / 13
-turn.chat.systemInstruction.length = 16335 / 3518 (250 times larger)
+```ts {.code-small-text code-line-numbers="false"}
+"Analyse my application. Find all the security issues and fix them"
 ```
+
+* Phrase: 13 tokens / 65 characters
+* System Instructions: 3'518 tokens / 16'335 characters
+* Lord of the Rings: ~900'000 tokens
+* Model context window: 1'000'000 tokens / $2.5
+
+---
+
+## System prompt structure
+
+<div class="list-small-text">
+* Setup, Core Mandates, AGENTS.md / GEMINI.md
+* Available Sub-Agents (codebase_investigator) & Tools
+* Primary Workflows
+  * Software Engineering Tasks
+  * New Applications
+* Operational Guidelines
+  * Shell tool output token efficiency
+  * Tone and Style (CLI Interaction)
+  * Security and Safety Rules
+  * Tool Usage
+  * Interaction Details
+* Sandbox info
+* Git Repository
+* Final Reminder
+</div>
+
+---
+
+## System prompt
+
+`src/core/prompts.ts`
 
 ```markdown {.code-small-text}
 You are an interactive CLI agent specializing in software engineering tasks.
@@ -107,27 +142,6 @@ and utilizing your available tools.
 ## New Applications
 ...
 ```
-
----
-
-## System prompt structure
-
-<div class="list-small-text">
-* Setup, Core Mandates, AGENTS.md / GEMINI.md
-* Available Sub-Agents (codebase_investigator) & Tools
-* Primary Workflows
-  * Software Engineering Tasks
-  * New Applications
-* Operational Guidelines
-  * Shell tool output token efficiency
-  * Tone and Style (CLI Interaction)
-  * Security and Safety Rules
-  * Tool Usage
-  * Interaction Details
-* Sandbox info
-* Git Repository
-* Final Reminder
-</div>
 
 ---
 
@@ -928,3 +942,196 @@ Training LLMs to Prioritize Privileged Instructions https://arxiv.org/pdf/2404.1
 * Model Context Protocol https://modelcontextprotocol.io/docs/getting-started/intro
 * Agentic Skills https://geminicli.com/docs/cli/skills/ https://agentskills.io/home
 </div>
+
+---
+
+## OpenClaw своими руками
+
+Из спичек и желудей
+
+<div class="focus-goal-footer">
+  <img src="./img/bot.webp" style="" alt="Bot"/>
+</div>
+
+---
+
+## OpenClaw своими руками [signatute]
+
+```python {.code-small-text}
+import asyncio
+import dspy
+import click
+
+
+class AgentSignature(dspy.Signature):
+    """Your task is to answer a users request.
+    You are running on OS X 24.6.0 System.
+    You are running on a real machine, not a sandbox, never delete files.
+    """
+
+    users_request: str = dspy.InputField(desc="Users request")
+    answer: str = dspy.OutputField(desc="Your answer")
+
+```
+
+---
+
+## OpenClaw своими руками [tools]
+
+```python {.code-small-text}
+async def run_zsh(command: str) -> str:
+    """
+    Run a shell command in zsh and return stdout/stderr plus exit code.
+
+    Args:
+        command: The shell command to execute.
+
+    Returns:
+        A formatted string with exit code, stdout, and stderr.
+    """
+    timeout: float = 300.0
+    try:
+        proc = await asyncio.create_subprocess_exec(
+            "zsh",
+            "-c",
+            command,
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE,
+        )
+
+        stdout, stderr = await asyncio.wait_for(proc.communicate(), timeout=timeout)
+
+        out = stdout.decode("utf-8", errors="replace").strip()
+        err = stderr.decode("utf-8", errors="replace").strip()
+
+        return (
+            f"exit_code: {proc.returncode}\n"
+            f"stdout:\n{out or '<empty>'}\n\n"
+            f"stderr:\n{err or '<empty>'}"
+        )
+
+    except asyncio.TimeoutError:
+        try:
+            proc.kill()
+            await proc.wait()
+        except Exception:
+            pass
+        return (
+            "exit_code: -1\nstdout:\n<empty>\n\nstderr:\n"
+            f"Command timed out after {timeout} seconds"
+        )
+    except Exception as e:
+        return f"exit_code: -1\nstdout:\n<empty>\n\nstderr:\n{type(e).__name__}: {e}"
+```
+
+---
+
+## OpenClaw своими руками [main]
+
+```python {.code-small-text}
+async def main(prompt: str) -> None:
+    dspy.configure(
+        lm=dspy.LM("vertex_ai/gemini-2.5-pro"),
+    )
+    agent = dspy.ReAct(
+        signature=AgentSignature,
+        tools=[run_zsh],
+        max_iters=10,
+    )
+    result = await agent.acall(users_request=prompt)
+    print(result.answer)
+
+
+@click.command()
+@click.option("--prompt")
+def main_wrapper(prompt: str) -> None:
+    asyncio.run(main(prompt))
+
+
+if __name__ == "__main__":
+    main_wrapper()
+```
+
+---
+
+Example Run [System Report]
+
+```bash {.code-small-text}
+$ python agent.py --prompt "Сделай отчет по системе. Ответь на следующие вопросы: \
+  1. Каково мое текущее состояние батареи? \
+  2. Какие запущенные приложения в данный момент занимают больше всего физической памяти? \
+  
+  Дай список из top 5, скажи сколько физической памяти они занимают."
+
+Конечно, вот отчет по вашей системе:
+
+**1. Состояние батареи:**
+Ваша батарея заряжена на **39%** и в данный момент не заряжается (режим разрядки).
+Расчетное оставшееся время работы от батареи составляет **4 часа 5 минут**.
+
+**2. Топ-5 приложений по использованию физической памяти:**
+Вот список из 5 процессов, которые в данный момент занимают больше всего физической памяти:
+
+1.  **Code Helper (Renderer)** (процесс Visual Studio Code): ~458 МБ
+2.  **Code Helper (Plugin)** (процесс Visual Studio Code): ~407 МБ
+3.  **Safari**: ~380 МБ
+4.  **com.apple.WebKit.WebContent** (процесс Safari для отображения веб-контента): ~354 МБ
+5.  **com.apple.WebKit.WebContent** (процесс Safari для отображения веб-контента): ~338 МБ
+```
+
+---
+
+Example Run [System Report / commands]
+
+```bash {.code-small-text}
+$ pmset -g batt
+Now drawing from 'Battery Power'
+ -InternalBattery-0 (id=34537571)	38%; discharging; 3:45 remaining present: true
+
+$ ps -ax -o comm,rss | sort -k2nr | head -n 5
+/System/Library/ 511296
+/System/Library/ 471968
+/Applications/Vi 455296
+/Applications/Vi 430272
+/System/Volumes/ 397824
+
+$ ps -ax -o rss,command | sort -nr | head -n 5
+446224 /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent
+436192 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper (Plugin).app/Contents/MacOS/Code Helper (Plugin) /Users/dmitry/.vscode/extensions/ms-python.vscode-pylance-2026.1.1/dist/server.bundle.js --cancellationReceive=file:c929d4b9070cbba262b6275aafaca1165d841808ba --node-ipc --clientProcessId=41455
+431760 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper (Renderer).app/Contents/MacOS/Code Helper (Renderer) --type=renderer --user-data-dir=/Users/dmitry/Library/Application Support/Code --standard-schemes=vscode-webview,vscode-file --enable-sandbox --secure-schemes=vscode-webview,vscode-file --cors-schemes=vscode-webview,vscode-file --fetch-schemes=vscode-webview,vscode-file --service-worker-schemes=vscode-webview --code-cache-schemes=vscode-webview,vscode-file --app-path=/Applications/Visual Studio Code.app/Contents/Resources/app --enable-sandbox --enable-blink-features=HighlightAPI --max-active-webgl-contexts=32 --disable-blink-features=FontMatchingCTMigration,StandardizedBrowserZoom, --lang=en-GB --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=19 --time-ticks-at-unix-epoch=-1773044531133602 --launch-time-ticks=151658355190 --shared-files --field-trial-handle=1718379636,r,9352600272208397240,5923980680224771837,262144 --enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,EarlyEstablishGpuChannel,EstablishGpuChannelAsync,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=CalculateNativeWinOcclusion,LocalNetworkAccessChecks,MacWebContentsOcclusion,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --trace-process-track-uuid=3190709004115666625 --vscode-window-config=vscode:5956124d-1392-422d-9f90-097e3d671603 --seatbelt-client=116
+398288 /System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app/Contents/MacOS/Safari
+392800 /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent
+```
+
+---
+
+Example Run [Weather]
+
+```bash {.code-small-text}
+$ python main.py --prompt "Какая сейчас погода в Берлине?"
+
+Сейчас в Берлине солнечно.
+- Температура: +14°C (ощущается как +13°C)
+- Ветер: 17 км/ч
+- Видимость: 10 км
+- Осадки: 0.0 мм
+```
+
+---
+
+Example Run [Weather / commands]
+
+```python {.code-small-text}
+trajectory["thought_0"] = (
+  "The user is asking for the current weather in Berlin. I can use the `curl` "
+  "command with `wttr.in` to get this information. "
+  "I will specify the language as Russian to match the user's request."
+)
+```
+
+```bash {.code-small-text}
+$ curl wttr.in/Berlin?lang=ru
+return code = 1
+$ curl 'wttr.in/Berlin?lang=ru'
+...
+```
