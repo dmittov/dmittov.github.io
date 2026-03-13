@@ -23,6 +23,7 @@ format:
 
 ## Vibe coding != AI Assistant
 
+<div class="list-small-text">
 ::: columns
 ::: column
 * Traditional coding + AI help
@@ -34,16 +35,19 @@ format:
 ![](./img/vibe.png){style="max-height: 70vh; object-fit: contain;"}
 :::
 :::
+</div>
 
 ---
 
 ## Focus & Goal
 
+<div class="list-small-text">
 * No debate whether vibe coding is “good” or “bad”.
 * Take an LM as a black box, no LLM internals, no math.
 * Know how to build a coding agent from scratch using LLM
 
 It's a good guideline / check list to build agents for your practical tasks.
+</div>
 
 <div class="focus-goal-footer">
   <img src="./img/goal_footer.png" style="" alt="Robot coaching a road cyclist, DJ support, and fashion photography collage"/>
@@ -53,20 +57,24 @@ It's a good guideline / check list to build agents for your practical tasks.
 
 ## Vibe Coding Tools
 
+<div class="list-small-text">
 * Claude Code
 * Cursor AI
 * OpenAI Codex
 * ...
 * Gemini CLI
 * Qwen CLI
+</div>
 
 ---
 
 ## Gemini CLI
 
+<div class="list-small-text">
 * Open Source: https://github.com/google-gemini/gemini-cli
 * gemini-2.5-pro / gemini-3-pro are good enough
 * Hides nothing, prompt processing is done inside a client's application
+</div>
 
 ---
 
@@ -890,7 +898,7 @@ The first response.
 <div class="list-small-text">
 * Sub-Agents:
   - prompt grows like a snowball, sub-agents help to keep prompts smaller
-  - quality degrades when have too many agents
+  - quality degrades when have too many tools
 * Model Router: Gemini CLI picks between `gemini-2.5-pro`, `gemini-2.5-flash`, checks if `gemini-3-pro-preview` is available. `gemini-2.5-flash-lite` is used for the router prompt.
 * Skills: a new feature, introduced in end of 2025 (Anthropic) / Jan 2026 (Gemini CLI)
 </div>
