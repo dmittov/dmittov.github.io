@@ -224,3 +224,17 @@ Base layer: 0-15–30 € / 50–100 € (мериносовая шерсть)
 дисковый (disc brake)
 :::
 ::::
+
+## Dmitry Mittov
+
+:::: {.columns}
+::: {.column width="60%" .vmiddle}
+- GitHub: @dmittov
+- E-mail: mittov@gmail.com
+- Instagram: @mittov
+- Strava: @dmittov
+:::
+::: {.column width="40%" .vmiddle}
+![](img/strava_qr.png){width="75%"}
+:::
+::::
