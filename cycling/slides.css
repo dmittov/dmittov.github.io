@@ -1,0 +1,105 @@
+.reveal .text-sm {
+  font-size: 1.2rem;
+}
+
+.reveal .text-xs {
+  font-size: 0.75rem;
+}
+
+.reveal .leading-snug {
+  line-height: 1.375;
+}
+
+.reveal .font-semibold {
+  font-weight: 600;
+}
+
+.reveal .font-bold {
+  font-weight: 700;
+}
+
+.reveal .uppercase {
+  text-transform: uppercase;
+}
+
+.reveal .opacity-40 {
+  opacity: 0.4;
+}
+
+.reveal .opacity-60 {
+  opacity: 0.6;
+}
+
+.reveal .text-emerald-600 {
+  color: #059669;
+}
+
+.reveal .text-red-500 {
+  color: #ef4444;
+}
+
+.reveal .text-red-700 {
+  color: #b91c1c;
+}
+
+.reveal .text-green-500 {
+  color: #22c55e;
+}
+
+.reveal .space-y-1 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 0.25rem;
+}
+
+.reveal .mt-1 {
+  margin-top: 0.25rem;
+}
+
+.reveal .mb-1 {
+  margin-bottom: 0.25rem;
+}
+
+.reveal .grid {
+  display: grid;
+}
+
+.reveal .grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.reveal .gap-6 {
+  gap: 1.5rem;
+}
+
+.reveal .items-start {
+  align-items: flex-start;
+}
+
+.reveal pre code.code-small-text,
+.reveal pre.code-small-text code,
+.reveal pre.code-small-text code span,
+.reveal pre code.code-small-text span {
+  font-size: 0.8em;
+  line-height: 1.2;
+}
+
+.reveal .list-small-text {
+  font-size: 0.7em;
+  line-height: 1.2;
+}
+
+.reveal .focus-goal-footer {
+  margin-top: 1.2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.reveal .column.vmiddle {
+  vertical-align: middle;
+}
+
+.reveal .focus-goal-footer img {
+  width: min(88vw, 1280px);
+  max-height: 44vh;
+  object-fit: contain;
+  opacity: 0.96;
+}
